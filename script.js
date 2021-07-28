@@ -49,25 +49,46 @@ console.log(`factorial ${num2}! = ${factorial}`); */
 // console.log('Минимальное количесво пачек ', showReamPaper());
 
 // Task 4
-const roomsOnFloor = 3;
-const floors = 9;
-const roomNumber = 456;
-let porch = 0;
-let floor = 0;
+// const roomsOnFloor = 3;
+// const floors = 9;
+// const roomNumber = 456;
+// let porch = 0;
+// let floor = 0;
 
-const showPorchAndFloor = function () {
-  let amountRoomsInPorsh = floors * roomsOnFloor;
-  let roomsInLastPorch = roomNumber % amountRoomsInPorsh;
-  let tempPorch = (roomNumber - roomsInLastPorch) / amountRoomsInPorsh;
-  porch = roomsInLastPorch === 0 ? tempPorch : tempPorch + 1;
-  floor =
-    (((roomNumber - 1 - ((roomNumber - 1) % roomsOnFloor)) / roomsOnFloor) %
-      floors) +
-    1;
-  return {
-    porch,
-    floor
-  };
-};
+// const showPorchAndFloor = function () {
+//   let amountRoomsInPorsh = floors * roomsOnFloor;
+//   let roomsInLastPorch = roomNumber % amountRoomsInPorsh;
+//   let tempPorch = (roomNumber - roomsInLastPorch) / amountRoomsInPorsh;
+//   porch = roomsInLastPorch === 0 ? tempPorch : tempPorch + 1;
+//   floor =
+//     (((roomNumber - 1 - ((roomNumber - 1) % roomsOnFloor)) / roomsOnFloor) %
+//       floors) +
+//     1;
+//   return {
+//     porch,
+//     floor
+//   };
+// };
 
-console.log(showPorchAndFloor());
+// console.log(showPorchAndFloor());
+
+// Task 5
+
+const medianNumber = 8;
+let show = '';
+let star = '*';
+let diez = '#';
+
+for (let i = 0; i < medianNumber; i++) {
+  for (let k = 1; k < medianNumber - i; k++) {
+    show += '-';
+  }
+  for (let k = medianNumber - 2 * i; k <= medianNumber; k++) {
+    show += '#';
+  }
+  for (let k = 1; k < medianNumber - i; k++) {
+    show += '-';
+  }
+  show += '\n';
+}
+console.log(show);
