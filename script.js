@@ -2,7 +2,9 @@
 
 // Task 1
 
-for (let i = 1; i <= 10; i++) {
+const num = 10;
+
+for (let i = 1; i <= num; i++) {
   if (i % 3 === 0) {
     console.log(i, 'FizBuz');
   } else if (i % 2 === 0) {
@@ -11,3 +13,5 @@ for (let i = 1; i <= 10; i++) {
     console.log(i, 'Buz');
   }
 }
+
+// Task 2
