@@ -49,6 +49,7 @@ console.log(`factorial ${num2}! = ${factorial}`); */
 // console.log('Минимальное количесво пачек ', showReamPaper());
 
 // Task 4
+
 // const roomsOnFloor = 3;
 // const floors = 9;
 // const roomNumber = 456;
@@ -75,19 +76,19 @@ console.log(`factorial ${num2}! = ${factorial}`); */
 // Task 5
 
 const medianNumber = 8;
+const space = '-';
+const diez = '#';
 let show = '';
-let star = '*';
-let diez = '#';
 
 for (let i = 0; i < medianNumber; i++) {
   for (let k = 1; k < medianNumber - i; k++) {
-    show += '-';
+    show += space;
   }
   for (let k = medianNumber - 2 * i; k <= medianNumber; k++) {
-    show += '#';
+    show += diez;
   }
   for (let k = 1; k < medianNumber - i; k++) {
-    show += '-';
+    show += space;
   }
   show += '\n';
 }
