@@ -21,3 +21,18 @@ const showCapitalOfCountries = obj => {
 };
 
 console.log(showCapitalOfCountries(citiesAndCountries));
+
+// Task 2
+const amount = 12;
+const createMultiArray = num => {
+  const mainArr = [];
+  for (let i = 0; i < num / 3; i++) {
+    mainArr[i] = [];
+    for (let k = 0; k < 3; k++) {
+      mainArr[i][k] = k + i * 3 + 1;
+    }
+  }
+  return mainArr;
+};
+
+console.log(createMultiArray(amount));
