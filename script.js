@@ -23,6 +23,7 @@ const showCapitalOfCountries = obj => {
 console.log(showCapitalOfCountries(citiesAndCountries));
 
 // Task 2
+
 const amount = 12;
 const createMultiArray = num => {
   const mainArr = [];
@@ -36,3 +37,40 @@ const createMultiArray = num => {
 };
 
 console.log(createMultiArray(amount));
+
+// Task 3
+
+const namesOfDays = {
+  ru: [
+    'Пондельник',
+    'Вторник',
+    'Среда',
+    'Четверг',
+    'Пятница',
+    'Суббота',
+    'Воскресенье'
+  ],
+  en: [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ]
+};
+
+const getNameOfDay = (lg, numDay) => {
+  let languages = '';
+  if (namesOfDays[lg] === undefined || numDay <= 0 || numDay > 7) {
+    for (let key in namesOfDays) {
+      languages += key + ', ';
+    }
+    return `Ошибка! Введите из доступных языков ${languages} и от 1 до 7 день недели. `;
+  } else {
+    return namesOfDays[lg][numDay - 1];
+  }
+};
+
+console.log(getNameOfDay('en', 7));
