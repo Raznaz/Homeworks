@@ -94,3 +94,22 @@ const sumTwoPosNum = arr => {
 };
 
 console.log(sumTwoPosNum(numbers));
+
+// Task 5
+
+// const binaryNum = [1, 0, 1, 0, 1]; //21
+// const binaryNum = [0, 0, 1, 0];  //2
+// const binaryNum = [0, 0, 0, 1]; //1
+// const binaryNum = [1, 1, 1, 1]; //15
+const binaryNum = [1, 0, 0, 0, 1]; //17
+// const binaryNum = [1, 1, 1, 0, 0, 1]; //57
+
+const transferNumfromBinaryToTen = arr => {
+  let result = 0;
+  for (let i = 0; i < arr.length; i++) {
+    result += arr[i] * 2 ** (arr.length - 1 - i);
+  }
+  return result;
+};
+
+console.log(transferNumfromBinaryToTen(binaryNum));
