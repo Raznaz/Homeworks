@@ -74,3 +74,23 @@ const getNameOfDay = (lg, numDay) => {
 };
 
 console.log(getNameOfDay('en', 7));
+
+// Taks 4
+
+const numbers = [19, 5, 42, 2, 77];
+
+const sumTwoPosNum = arr => {
+  let min1 = arr[0];
+  let min2 = arr[1];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < min1) {
+      min2 = min1;
+      min1 = arr[i];
+    }
+  }
+
+  return min1 + min2;
+};
+
+console.log(sumTwoPosNum(numbers));
