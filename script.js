@@ -32,3 +32,15 @@ let createEmployesFromArr = arr => {
 const emplyeeConstructArr = createEmployesFromArr(emplyeeArr);
 
 console.log(emplyeeConstructArr);
+
+// Task 4
+
+const getFullNamesFromArr = arr => {
+  return arr.map(obj => {
+    return obj.getFullName();
+  });
+};
+
+getFullNamesFromArr(emplyeeConstructArr);
+
+console.log(getFullNamesFromArr(emplyeeConstructArr));
