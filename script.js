@@ -51,9 +51,6 @@ const getMiddleSalary = arr => {
   let totalSalary = 0;
   for (let i = 0; i < arr.length; i++) {
     totalSalary += arr[i].salary;
-    // console.log(arr[i].salary);
-    // console.log('total ', totalSalary);
-    // console.log('middle salary', totalSalary / arr.length);
   }
 
   return Math.round(totalSalary / arr.length);
@@ -61,4 +58,4 @@ const getMiddleSalary = arr => {
 
 getMiddleSalary(emplyeeConstructArr);
 
-// console.log(getMiddleSalary(emplyeeConstructArr));
+console.log(getMiddleSalary(emplyeeConstructArr));
