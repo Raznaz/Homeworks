@@ -14,3 +14,9 @@ function Emploee(emploee) {
 
 const emploee = emplyeeArr[0];
 const employeeObj = new Emploee(emploee);
+
+// Task 2
+
+Emploee.prototype.getFullName = function () {
+  return this.name + ' ' + this.surname;
+};
