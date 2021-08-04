@@ -20,3 +20,15 @@ const employeeObj = new Emploee(emploee);
 Emploee.prototype.getFullName = function () {
   return this.name + ' ' + this.surname;
 };
+
+// Task 3
+
+let createEmployesFromArr = arr => {
+  return arr.map(obj => {
+    return new Emploee(obj);
+  });
+};
+
+const emplyeeConstructArr = createEmployesFromArr(emplyeeArr);
+
+console.log(emplyeeConstructArr);
