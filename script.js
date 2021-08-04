@@ -1,8 +1,3 @@
-// HW 3
-
-/* 
-test test test
-*/
 // HW3
 
 // Task 1
