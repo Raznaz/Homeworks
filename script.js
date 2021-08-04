@@ -44,3 +44,21 @@ const getFullNamesFromArr = arr => {
 getFullNamesFromArr(emplyeeConstructArr);
 
 console.log(getFullNamesFromArr(emplyeeConstructArr));
+
+// Task 5
+
+const getMiddleSalary = arr => {
+  let totalSalary = 0;
+  for (let i = 0; i < arr.length; i++) {
+    totalSalary += arr[i].salary;
+    // console.log(arr[i].salary);
+    // console.log('total ', totalSalary);
+    // console.log('middle salary', totalSalary / arr.length);
+  }
+
+  return Math.round(totalSalary / arr.length);
+};
+
+getMiddleSalary(emplyeeConstructArr);
+
+// console.log(getMiddleSalary(emplyeeConstructArr));
