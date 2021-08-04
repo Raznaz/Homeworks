@@ -8,7 +8,7 @@ function Emploee(emploee) {
   this.surname = emploee.surname;
   this.salary = emploee.salary;
   this.workExperience = emploee.workExperience;
-  this.isPrivileges = emploee.Privileges;
+  this.isPrivileges = emploee.isPrivileges;
   this.gender = emploee.gender;
 }
 
@@ -70,3 +70,28 @@ const getRandomEmployee = arr => {
 getRandomEmployee(emplyeeConstructArr);
 
 console.log(getRandomEmployee(emplyeeConstructArr));
+
+// Task7
+Object.defineProperty(Emploee.prototype, 'fullInfo', {
+  get() {
+    let str = '';
+    for (const key in this) {
+      if (Object.hasOwnProperty.call(this, key)) {
+        str += key + ' - ' + this[key] + ', ';
+      }
+    }
+    return str;
+  },
+
+  set(obj) {
+    for (let key in obj) {
+      if (this[key] !== undefined) {
+        this[key] = obj[key];
+      }
+    }
+  }
+});
+
+employeeObj.fullInfo = { name: 'Вася', salary: 9000, email: 'ex@mail.ua' };
+console.log(employeeObj);
+console.log(employeeObj.fullInfo);
