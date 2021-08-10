@@ -52,3 +52,31 @@ studentArr.map(obj => {
 // new Student(studentArr[1]);
 // new Student(studentArr[2]);
 // new Student(studentArr[5]);
+
+//  Task 2
+
+class CustomString {
+  reverse(str) {
+    // return str.split('').reverse().join(''); //c методами
+
+    let newStr = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+      newStr += str[i];
+    }
+    return newStr;
+  }
+
+  ucFirst(str) {
+    // return str[0].toUpperCase() + str.slice(1);  // с методами
+
+    let newStr = '';
+    for (let i = 1; i < str.length; i++) {
+      newStr += str[i];
+    }
+    return str[0].toUpperCase() + newStr;
+  }
+
+  ucWords(str) {
+    return str.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+  }
+}
