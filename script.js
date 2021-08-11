@@ -77,6 +77,30 @@ class CustomString {
   }
 
   ucWords(str) {
-    return str.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+    // return str.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+
+    let splitStr = str.split(' ');
+    let newStr = '';
+
+    for (let i = 0; i < splitStr.length; i++) {
+      let word = splitStr[i];
+      // let firstLetter = word.substring(0, 1).toUpperCase();
+      let firstLetter = word[0].toUpperCase();
+      let leftWord = word.substring(1, word.length);
+      // console.log(firstLetter);
+      newStr += firstLetter + leftWord + ' ';
+    }
+    return newStr;
   }
 }
+
+const myString = new CustomString();
+
+// Task 3
+
+// class Validation{}{
+//   constructor() {
+
+//   }
+
+// }
