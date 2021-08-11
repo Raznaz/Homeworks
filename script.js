@@ -57,7 +57,7 @@ studentArr.map(obj => {
 
 class CustomString {
   reverse(str) {
-    // return str.split('').reverse().join(''); //c методами
+    // return str.split('').reverse().join(''); //  вариант c методами c методами
 
     let newStr = '';
     for (let i = str.length - 1; i >= 0; i--) {
@@ -67,7 +67,7 @@ class CustomString {
   }
 
   ucFirst(str) {
-    // return str[0].toUpperCase() + str.slice(1);  // с методами
+    // return str[0].toUpperCase() + str.slice(1);  //  вариант c методами с методами
 
     let newStr = '';
     for (let i = 1; i < str.length; i++) {
@@ -77,17 +77,18 @@ class CustomString {
   }
 
   ucWords(str) {
-    // return str.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+    // return str.replace(/(^\w|\s\w)/g, m => m.toUpperCase()); // вариант c методами
 
     let splitStr = str.split(' ');
     let newStr = '';
 
     for (let i = 0; i < splitStr.length; i++) {
+      let leftWord = '';
       let word = splitStr[i];
-      // let firstLetter = word.substring(0, 1).toUpperCase();
       let firstLetter = word[0].toUpperCase();
-      let leftWord = word.substring(1, word.length);
-      // console.log(firstLetter);
+      for (let k = 1; k < word.length; k++) {
+        leftWord += word[k];
+      }
       newStr += firstLetter + leftWord + ' ';
     }
     return newStr;
