@@ -99,9 +99,64 @@ const myString = new CustomString();
 
 // Task 3
 
-// class Validation{}{
-//   constructor() {
+class Validator {
+  checkIsEmail(string) {
+    let lastAtPos = string.lastIndexOf('@');
+    let lastDotPos = string.lastIndexOf('.');
 
-//   }
+    return (
+      lastAtPos < lastDotPos &&
+      lastAtPos > 0 &&
+      string.indexOf('.') > 0 &&
+      string.indexOf('@@') == -1 &&
+      string.indexOf('.@') == -1 &&
+      string.length - lastDotPos > 2 &&
+      lastDotPos > 2
+    );
+  }
 
-// }
+  checkIsDomain(domain) {
+    let res = domain.match(
+      /((http|ftp|https):\/\/)?[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?/g
+    );
+    if (res == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  checkIsDate(date) {
+    let newDate = date.split(/[\/\.-]/);
+    if (
+      newDate.length === 2 ||
+      (newDate.length === 3 &&
+        !isNaN(Date.parse(newDate[2] + '-' + newDate[1] + '-' + newDate[0])))
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkIsPhone(phoneNumber) {
+    console.log(phoneNumber.length);
+    let number = '';
+    for (let i = 0; i < phoneNumber.length; i++) {
+      number = phoneNumber.trim().split('');
+      if (
+        phoneNumber[0] === '+' &&
+        phoneNumber[1] === '3' &&
+        phoneNumber[2] === '8' &&
+        phoneNumber.length >= 13
+      ) {
+        console.log(phoneNumber);
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}
+
+const valid = new Validator();
