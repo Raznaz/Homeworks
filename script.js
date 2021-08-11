@@ -86,6 +86,7 @@ class CustomString {
       let leftWord = '';
       let word = splitStr[i];
       let firstLetter = word[0].toUpperCase();
+
       for (let k = 1; k < word.length; k++) {
         leftWord += word[k];
       }
@@ -140,7 +141,6 @@ class Validator {
   }
 
   checkIsPhone(phoneNumber) {
-    console.log(phoneNumber.length);
     let number = '';
     for (let i = 0; i < phoneNumber.length; i++) {
       number = phoneNumber.trim().split('');
@@ -150,7 +150,6 @@ class Validator {
         phoneNumber[2] === '8' &&
         phoneNumber.length >= 13
       ) {
-        console.log(phoneNumber);
         return true;
       } else {
         return false;
