@@ -139,6 +139,19 @@ class Validator {
   }
 
   checkIsPhone(phoneNumber) {
+    // Вариант с регуляркой
+
+    // const checkPhoneNumber = phoneNumber.match(
+    //   /^(\+)?38(\(|\s)?(\d){3}(\)|\s)?(\d){2}(\s|\-)?(\d){2}(\s|\-)?(\d){3}/g
+    // );
+    // if (checkPhoneNumber !== null) {
+    //   console.log('номер из Украины');
+    //   return true;
+    // } else {
+    //   console.log('ОШИБКА');
+    //   return false;
+    // }
+
     let number = '';
     for (let i = 0; i < phoneNumber.length; i++) {
       number = phoneNumber.trim().split('');
