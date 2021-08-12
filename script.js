@@ -117,7 +117,7 @@ class Validator {
   }
 
   checkIsDomain(domain) {
-    let res = domain.match(/((http|https):\/\/)?(www\.)?\w+(\.\w{2,3})+$/g);
+    let res = domain.match(/^((http|https):\/\/)?(www\.)?\w+(\.\w{2,3})+$/g);
     if (res == null) {
       return false;
     } else {
