@@ -63,8 +63,20 @@ console.log(getTime());
 
 // Task 4
 
-const time = 60;
+const timer = sec => {
+  let interval = setInterval(() => {
+    let min = Math.floor(sec / 60);
+    let s = sec % 60;
+    if (min < 10) min = '0' + min;
+    if (s < 10) s = '0' + s;
 
-const timer = time => {};
+    console.log(`${min}:${s}`);
+    sec--;
+    if (sec === 0) {
+      clearInterval(interval);
+      console.log('Time End');
+    }
+  }, 1000);
+};
 
 timer(120);
