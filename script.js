@@ -62,3 +62,9 @@ const getTime = checkTime();
 console.log(getTime());
 
 // Task 4
+
+const time = 60;
+
+const timer = time => {};
+
+timer(120);
