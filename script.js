@@ -52,8 +52,9 @@ const checkTime = function () {
       startTime = spentTime;
       return 'Enabled';
     } else {
-      let spentTime = Math.round((Date.now() - startTime) / 1000) + ' sec';
-      return spentTime;
+      let spentTime = Date.now() - startTime;
+      startTime = Date.now();
+      return Math.floor(spentTime / 1000) + ' sec';
     }
   };
 };
