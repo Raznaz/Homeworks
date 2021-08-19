@@ -142,3 +142,15 @@ console.log(getCondidatesByGender('male'));
 console.log(getCondidatesByGender('female'));
 
 // Task 10
+
+Array.prototype.myReduce = function (func) {
+  let a = 0;
+  for (let i = 0; i < this.length; i++) {
+    func((a = a + this[i]));
+  }
+  return a;
+};
+
+const arrNumb = [2, 3, 4, 5, 6];
+let res = arrNumb.myReduce((acc, item) => acc + item);
+console.log(res);
