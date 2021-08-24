@@ -58,4 +58,14 @@ const sortCandidatesArr = sortBy => {
 
 // Task 4
 
-const getEyeColorMap = () => {};
+const getEyeColorMap = () => {
+  let objEye = {};
+  condidateArr.map(obj => {
+    objEye[obj.eyeColor] = condidateArr.filter(
+      item => item.eyeColor === obj.eyeColor
+    );
+  });
+  return objEye;
+};
+
+// console.log(getEyeColorMap());
