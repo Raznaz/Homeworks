@@ -153,4 +153,26 @@ Array.prototype.myReduce = function (func) {
 
 const arrNumb = [2, 3, 4, 5, 6];
 let res = arrNumb.myReduce((acc, item) => acc + item);
-console.log(res);
+// console.log(res);
+
+// myJoin
+
+Array.prototype.myJoin = function (separator = ',') {
+  let newStr = '';
+  if (separator === undefined) separator = ',';
+  for (let index = 0; index < this.length; index++) {
+    newStr +=
+      typeof this[index] === 'number' || typeof this[index] === 'string'
+        ? this[index]
+        : '';
+    newStr += index >= this.length - 1 ? '' : separator;
+  }
+  return newStr;
+};
+
+const arrNumb2 = [2, 3, 4, null, 6, 'hi', undefined, 9];
+
+// console.log(arrNumb2.myJoin('+'));
+// console.log(arrNumb2.myJoin());
+// console.log(arrNumb2.myJoin(undefined));
+// console.log(arrNumb2.myJoin(5));
