@@ -5,7 +5,7 @@
 const num = 20;
 
 for (let i = 1; i <= num; i++) {
-  if (i % 3 === 0) {
+  if (!(i % 3)) {
     console.log(i, 'FizBuz');
   } else if (i % 2 === 0) {
     console.log(i, 'Fiz');
@@ -17,10 +17,10 @@ for (let i = 1; i <= num; i++) {
 // Task 2
 
 const num2 = 7;
-let factorial = 0;
+let factorial = 1;
 
 for (let i = num2; i > 0; i--) {
-  factorial ? (factorial *= i) : (factorial = i);
+  factorial *= i;
 }
 
 console.log(`factorial ${num2}! = ${factorial}`);
@@ -66,7 +66,7 @@ const showPorchAndFloor = function () {
     1;
   return {
     porch,
-    floor
+    floor,
   };
 };
 
