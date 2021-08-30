@@ -9,7 +9,7 @@ const citiesAndCountries = {
   Берлин: 'Германия',
   Париж: 'Франция',
   Лиссабон: 'Португалия',
-  Вена: 'Австрия'
+  Вена: 'Австрия',
 };
 
 const showCapitalOfCountries = obj => {
@@ -48,7 +48,7 @@ const namesOfDays = {
     'Четверг',
     'Пятница',
     'Суббота',
-    'Воскресенье'
+    'Воскресенье',
   ],
   en: [
     'Monday',
@@ -57,23 +57,23 @@ const namesOfDays = {
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday'
-  ]
+    'Sunday',
+  ],
 };
 
 const getNameOfDay = (lg, numDay) => {
   let languages = '';
   if (namesOfDays[lg] === undefined || numDay <= 0 || numDay > 7) {
-    for (let key in namesOfDays) {
-      languages += key + ', ';
-    }
-    return `Ошибка! Введите из доступных языков ${languages} и от 1 до 7 день недели. `;
+    return `Ошибка! Введите из доступных языков
+    ${Object.keys(namesOfDays)} и от 1 до 7
+    день недели.`;
   } else {
     return namesOfDays[lg][numDay - 1];
   }
 };
 
 console.log(getNameOfDay('en', 7));
+console.log(getNameOfDay('fr', 7));
 
 // Taks 4
 
