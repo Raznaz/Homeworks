@@ -80,6 +80,9 @@ console.log(getNameOfDay('fr', 7));
 const numbers = [19, 5, 42, 2, 77];
 
 const sumTwoPosNum = arr => {
+  for (let num of numbers) {
+    if (num < 0 || num % 1) return;
+  }
   let min1 = arr[0];
   let min2 = arr[1];
 
