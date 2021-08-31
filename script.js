@@ -25,14 +25,10 @@ console.log(getAllKeys(obj));
 // Task 3
 
 const getAllValues = function (obj) {
-  const arrValues = [];
-  for (const key in obj) {
-    arrValues.push(obj[key]);
-  }
-  return arrValues;
+  return Object.entries(obj).map(arr => arr[1]);
 };
 
-// console.log(getAllValues(obj));
+console.log(getAllValues(obj));
 
 // Task 4
 
