@@ -16,15 +16,11 @@ const removeUser = function (arr, index) {
 const obj = { name: 'Vasya', age: 1 };
 
 const getAllKeys = function (obj) {
-  const arrKeys = [];
-  for (const key in obj) {
-    arrKeys.push(key);
-  }
-  return arrKeys;
+  return Object.keys(obj);
 };
 
 getAllKeys(obj); /// ["name", "age"]
-// console.log(getAllKeys(obj));
+console.log(getAllKeys(obj));
 
 // Task 3
 
