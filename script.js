@@ -5,7 +5,6 @@
 const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
     const rndNum = Math.floor(Math.random() * (7 - 1) + 1);
-    console.log('Случайное число', rndNum);
     if (rndNum >= 1 && rndNum <= 5) {
       console.log('Start the game...');
       resolve(rndNum);
@@ -15,7 +14,6 @@ const promise = new Promise((resolve, reject) => {
   }, 2000);
 })
   .then((number) => {
-    console.log(number);
     if (number === 1) {
       console.log('Stay here');
     } else {
