@@ -26,3 +26,30 @@ const promise = new Promise((resolve, reject) => {
   .finally(() => {
     console.log('Exit');
   });
+
+// Task 2
+
+function goToShop(number) {
+  if (number >= 4) {
+    return Promise.resolve(number);
+  } else {
+    return Promise.reject('Too low products');
+  }
+}
+
+function makeDinner() {
+  console.log('Start cooking...');
+  return Promise.resolve(
+    setTimeout(() => {
+      console.log('Bon Appetit');
+    }, 3000),
+  );
+}
+
+goToShop(1)
+  .then(() => makeDinner())
+  .catch((err) => {
+    const error = new Error(err);
+    error.name = 'Product Error';
+    throw error;
+  });
