@@ -50,21 +50,19 @@ goToShop(4)
   });
 
 // Task 3
+
 const formContainer = document.querySelector('.form-container');
 const inputs = formContainer.querySelectorAll(' input');
 
 const getCharactersById = (...idArr) => {
-  // console.log(idArr);
   fetch(`https://rickandmortyapi.com/api/character/${idArr}`)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
       render(data);
     });
 };
 
 const render = (results) => {
-  console.log(results);
   const container = document.querySelector('.container');
   container.innerHTML = '';
   let dead = null;
@@ -120,8 +118,6 @@ const getCharactersByFilter = (type) => {
   } else {
     url = 'https://rickandmortyapi.com/api/character/?';
   }
-
-  console.log(url);
 
   fetch(`${url}`)
     .then((response) => response.json())
