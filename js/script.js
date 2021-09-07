@@ -53,9 +53,10 @@ goToShop(4)
 
 const formContainer = document.querySelector('.form-container');
 const inputs = formContainer.querySelectorAll(' input');
+const url = `https://rickandmortyapi.com/api/character/`;
 
 const getCharactersById = (...idArr) => {
-  fetch(`https://rickandmortyapi.com/api/character/${idArr}`)
+  fetch(`${url}${idArr}`)
     .then((response) => response.json())
     .then((data) => {
       render(data);
@@ -98,7 +99,7 @@ const render = (results) => {
 };
 
 const getCharactersByFilter = (type) => {
-  let url = 'https://rickandmortyapi.com/api/character/?';
+  let url = 'https://rickandmortyapi.com/api/character/';
 
   inputs.forEach((item) => {
     item.checked = false;
@@ -108,15 +109,13 @@ const getCharactersByFilter = (type) => {
   });
 
   if (type.id === 'female') {
-    url = url + `gender=female`;
+    url = url + `?gender=female`;
   } else if (type.id === 'male') {
-    url = url + `gender=male`;
+    url = url + `?gender=male`;
   } else if (type.id === 'alive') {
-    url += `status=alive`;
+    url += `?status=alive`;
   } else if (type.id === 'dead') {
-    url += `status=dead`;
-  } else {
-    url = 'https://rickandmortyapi.com/api/character/?';
+    url += `?status=dead`;
   }
 
   fetch(`${url}`)
@@ -126,9 +125,9 @@ const getCharactersByFilter = (type) => {
     });
 };
 
-getCharactersById(88, 2, 3, 4, 11, 21, 31, 41, 51, 61, 62, 32, 42, 52, 72, 49);
-
 formContainer.addEventListener('click', (e) => {
   const target = e.target;
   getCharactersByFilter(target);
 });
+
+getCharactersById(88, 2, 3, 4, 11, 21, 31, 41, 51, 61, 62, 32, 42, 52, 72, 49);
