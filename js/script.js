@@ -28,13 +28,8 @@ const promise = new Promise((resolve, reject) => {
   });
 
 // Task 2
-
 function goToShop(number) {
-  if (number >= 4) {
-    return Promise.resolve(number);
-  } else {
-    return Promise.reject('Too low products');
-  }
+  return Promise.resolve(number);
 }
 
 function makeDinner() {
@@ -46,8 +41,10 @@ function makeDinner() {
   );
 }
 
-goToShop(1)
-  .then(() => makeDinner())
+goToShop(4)
+  .then((data) =>
+    data < 4 ? Promise.reject('Too low products') : makeDinner(),
+  )
   .catch((err) => {
     const error = new Error(err);
     error.name = 'Product Error';
