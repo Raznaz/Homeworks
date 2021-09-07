@@ -130,6 +130,5 @@ getCharactersById(88, 2, 3, 4, 11, 21, 31, 41, 51, 61, 62, 32, 42, 52, 72, 49);
 
 formContainer.addEventListener('click', (e) => {
   const target = e.target;
-
   getCharactersByFilter(target);
 });
