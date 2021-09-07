@@ -50,73 +50,90 @@ goToShop(4)
   });
 
 // Task 3
+const formContainer = document.querySelector('.form-container');
+const inputs = formContainer.querySelectorAll(' input');
 
-const checkboxContainer = document.querySelector('.form-container');
-let mainArr = [];
-
-const getPersonsRickMortyById = () => {
-  fetch('https://rickandmortyapi.com/api/character')
+const getCharactersById = (...idArr) => {
+  // console.log(idArr);
+  fetch(`https://rickandmortyapi.com/api/character/${idArr}`)
     .then((response) => response.json())
-    .then(({ results }) => {
-      mainArr = results;
-      render(results);
+    .then((data) => {
+      // console.log(data);
+      render(data);
     });
 };
 
-const filter = (type) => {
-  console.log(type.id, type.checked);
-  if ((type.id === 'male' || type.id === 'female') && type.checked) {
-    const newArr = mainArr.filter(
-      ({ gender }) => gender.toLowerCase() === type.id,
-    );
-    render(newArr);
-  } else if ((type.id === 'alive' || type.id === 'dead') && type.checked) {
-    const newArr = mainArr.filter(
-      ({ status }) => status.toLowerCase() === type.id,
-    );
-    render(newArr);
-  } else {
-    render(mainArr);
-  }
+const render = (results) => {
+  console.log(results);
+  const container = document.querySelector('.container');
+  container.innerHTML = '';
+  let dead = null;
+
+  results.forEach(
+    ({ name, species, status, location: { name: location }, image }) => {
+      dead = status === 'Dead' ? (dead = 'dead') : null;
+      const div = document.createElement('div');
+      div.classList.add('card');
+      div.innerHTML = ` 
+        <div class="card-info">
+          <div class="title">
+            <h1>${name}</h1>
+            <div class="status">
+              <div class="live-status ${dead}"></div>
+              <p>${species} -- ${status}</p>
+            </div>
+          </div>
+          <div class="content">
+            <p>${location}</p>
+          </div>
+        </div>
+        <div class="card-image">
+          <img
+            src=${image}
+            alt="Img"
+          />
+        </div>
+  `;
+      document.querySelector('.container').append(div);
+    },
+  );
 };
 
-const render = (arr) => {
-  document.querySelector('.container').innerHTML = '';
-  arr.forEach(({ name, species, status, location: { name: city }, image }) => {
-    const elem = document.createElement('div');
-    let classDead = null;
-    elem.classList.add('card');
-    if (status === 'Dead') {
-      classDead = 'dead';
+const getCharactersByFilter = (type) => {
+  let url = 'https://rickandmortyapi.com/api/character/?';
+
+  inputs.forEach((item) => {
+    item.checked = false;
+    if (item === type) {
+      type.checked = true;
     }
-    elem.innerHTML = `
-		    <div class="card-info">
-		      <div class="title">
-		        <h1>${name}</h1>
-		        <div class="status">
-		          <div class="live-status ${classDead}"></div>
-		          <p>${species} -- ${status}</p>
-		        </div>
-		      </div>
-		      <div class="content">
-				<p>${city}</p>
-		      </div>
-		    </div>
-		    <div class="card-image">
-		      <img
-		        src=${image}
-		        alt="Img"
-		      />
-		    </div>
-  
-			`;
-    document.querySelector('.container').append(elem);
   });
+
+  if (type.id === 'female') {
+    url = url + `gender=female`;
+  } else if (type.id === 'male') {
+    url = url + `gender=male`;
+  } else if (type.id === 'alive') {
+    url += `status=alive`;
+  } else if (type.id === 'dead') {
+    url += `status=dead`;
+  } else {
+    url = 'https://rickandmortyapi.com/api/character/?';
+  }
+
+  console.log(url);
+
+  fetch(`${url}`)
+    .then((response) => response.json())
+    .then((data) => {
+      render(data.results);
+    });
 };
 
-checkboxContainer.addEventListener('click', (e) => {
-  const target = e.target;
-  filter(target);
-});
+getCharactersById(88, 2, 3, 4, 11, 21, 31, 41, 51, 61, 62, 32, 42, 52, 72, 49);
 
-getPersonsRickMortyById();
+formContainer.addEventListener('click', (e) => {
+  const target = e.target;
+
+  getCharactersByFilter(target);
+});
