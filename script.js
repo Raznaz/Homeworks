@@ -219,3 +219,20 @@ calendar.addEventListener('click', (e) => {
 		render();
 	}
 });
+// ******** Изменение цвета
+
+colorInp.addEventListener('change', (e) => {
+	currentElement.parentElement.parentElement.style.backgroundColor =
+		e.target.value;
+	currentObj = time.find(
+		(obj) => obj.id === +currentElement.parentElement.parentElement.dataset.id,
+	);
+	currentObj.bgColor = e.target.value;
+	closeWindow(modalColor);
+});
+
+modalColor.addEventListener('click', (e) => {
+	if (e.target.classList.contains('changeColorModal__close')) {
+		closeWindow(modalColor);
+	}
+});
