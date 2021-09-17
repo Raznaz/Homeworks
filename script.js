@@ -50,3 +50,51 @@ const getUniqId = () => {
 		}
 	});
 };
+
+const render = () => {
+	table.innerHTML = '';
+	getCorrectTime();
+	for (let i = 0; i <= 540; i++) {
+		const { hours, minutes } = getCalibrationTime(i);
+		let addZeroMin = minutes === 0 ? '00' : minutes;
+		const tr = document.createElement('tr');
+		const td = document.createElement('td');
+		const span = document.createElement('span');
+		span.classList.add('time', 'hidden');
+		tr.classList.add('tableRow');
+		span.classList.add('time');
+		span.innerHTML = `${hours}:${addZeroMin}`;
+
+		if (!(i % 60)) {
+			span.classList.remove('hidden');
+			span.classList.add('bigFont');
+		}
+		if (!(i % 30) && i % 60) {
+			span.classList.remove('hidden');
+			span.classList.add('smallFont');
+		}
+		tr.append(td);
+		tr.append(span);
+		table.append(tr);
+	}
+
+	const newTdArr = [...document.querySelectorAll('td')];
+
+	for (let i = 0; i < time.length; i++) {
+		for (k = 0; k < newTdArr.length; k++) {
+			if (time[i].start === k) {
+				newTdArr[k].dataset.id = time[i].id;
+				newTdArr[k].style.backgroundColor = time[i].bgColor;
+				newTdArr[k].classList.add('event');
+				newTdArr[k].innerHTML = `${time[i].title}
+				<span class="props">
+				<i class="change-color fas fa-paint-brush">
+				</i>
+				<i class="delete-event fas fa-times"></i>
+				</span>
+				`;
+				newTdArr[k].setAttribute('rowspan', `${time[i].duration}`);
+			}
+		}
+	}
+};
