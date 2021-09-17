@@ -51,9 +51,36 @@ const getUniqId = () => {
 	});
 };
 
-const render = () => {
+const controlEventHours = function () {
+	if (+this.value >= 8 && +this.value <= 17) {
+		this.style.backgroundColor = 'green';
+	} else {
+		this.style.backgroundColor = '#ff8f8f';
+	}
+};
+
+const controlEventMinutes = function () {
+	if (+this.value >= 0 && +this.value <= 60) {
+		this.style.backgroundColor = 'green';
+	} else {
+		this.style.backgroundColor = '#ff8f8f';
+	}
+};
+
+const closeWindow = (selector) => {
+	console.log('function Close Windows - work');
+	selector.classList.add('hidden');
+	selector.classList.remove('show');
+};
+
+const openWindow = (selector) => {
+	console.log('function Open Windows - work');
+	selector.classList.remove('hidden');
+	selector.classList.add('show');
+};
+
+const createCalendar = () => {
 	table.innerHTML = '';
-	getCorrectTime();
 	for (let i = 0; i <= 540; i++) {
 		const { hours, minutes } = getCalibrationTime(i);
 		let addZeroMin = minutes === 0 ? '00' : minutes;
@@ -77,6 +104,11 @@ const render = () => {
 		tr.append(span);
 		table.append(tr);
 	}
+};
+
+const render = () => {
+	createCalendar();
+	getCorrectTime();
 
 	const newTdArr = [...document.querySelectorAll('td')];
 
@@ -99,7 +131,7 @@ const render = () => {
 	}
 };
 
-// ******** Добавление нового события
+// ******** Добавление нового события NOTE:
 
 btn.addEventListener('click', () => {
 	openWindow(modalNewEvent);
@@ -134,7 +166,7 @@ modalNewEvent.addEventListener('click', (e) => {
 	}
 });
 
-modalNewEvent.addEventListener('input', function () {
+modalNewEvent.addEventListener('input', () => {
 	if (
 		+startHoursNewEvent.value >= 8 &&
 		+startHoursNewEvent.value <= 17 &&
