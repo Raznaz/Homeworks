@@ -23,7 +23,7 @@
 	</head>
 
 	<body>
-        <div class="container">
+		<div class="container">
 			<main class="main">
 				<section class="calendar">
 					<button class="btn calendar__buttonAdd">
@@ -32,6 +32,159 @@
 					<table class="table"></table>
 				</section>
 			</main>
+		</div>
+		<div class="changeEventModal">
+			<div class="changeEventModal__dialog">
+				<div class="changeEventModal__content">
+					<form action="#">
+						<div class="changeEventModal__close" data-close>&times;</div>
+						<h2>Change data your event</h2>
+						<p>Enter time START event(HH:MM)</p>
+						<div class="newEventModal__startContainer">
+							<input
+								class="changeEventModal__inpStart-hrs"
+								type="number"
+								min="0"
+								max="24"
+								placeholder="12"
+							/>:
+
+							<input
+								class="changeEventModal__inpStart-mins"
+								type="number"
+								min="0"
+								max="60"
+								placeholder="00"
+							/>
+						</div>
+						<p>Enter time END event(HH:MM)</p>
+						<div class="newEventModal__startContainer">
+							<input
+								class="changeEventModal__inpEnd-hrs"
+								type="number"
+								min="0"
+								max="24"
+								placeholder="12"
+							/>:
+							<input
+								class="changeEventModal__inpEnd-mins"
+								type="number"
+								min="0"
+								max="60"
+								placeholder="00"
+							/>
+						</div>
+						<!-- <label for="inpDuration">Change START time</label>
+						<input
+							class="changeEventModal__inpStart"
+							type="text"
+							data-value="startEvent"
+							placeholder="Enter START time"
+						/>
+						<label for="inpDuration">Change DURATION time</label>
+						<input
+							class="changeEventModal__inpDuration"
+							type="text"
+							data-value="durationEvent"
+							placeholder="Enter DURATION time"
+							id="inpDuration"
+						/> -->
+						<label for="inpDuration">Change your TITLE </label>
+						<input
+							class="changeEventModal__inpTitle"
+							type="text"
+							data-value="titleEvent"
+							placeholder="Ender TITLE event"
+						/>
+						<button class="btn changeEventModal__btn" type="submit">
+							Change
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="newEventModal">
+			<div class="newEventModal__dialog">
+				<div class="newEventModal__content">
+					<form action="#">
+						<div class="newEventModal__close" data-close>&times;</div>
+						<h2>Add new event</h2>
+						<p>Enter time START event(HH:MM)</p>
+						<div class="newEventModal__startContainer">
+							<input
+								class="newEventModal__inpStart-hrs"
+								type="number"
+								min="0"
+								max="24"
+								placeholder="00"
+							/>:
+
+							<input
+								class="newEventModal__inpStart-mins"
+								type="number"
+								min="0"
+								max="60"
+								placeholder="00"
+							/>
+						</div>
+						<p>Enter time END event(HH:MM)</p>
+						<div class="newEventModal__startContainer">
+							<input
+								class="newEventModal__inpEnd-hrs"
+								type="number"
+								min="0"
+								max="24"
+								placeholder="00"
+							/>:
+							<input
+								class="newEventModal__inpEnd-mins"
+								type="number"
+								min="0"
+								max="60"
+								placeholder="00"
+							/>
+						</div>
+						<!-- <label for="newEventModal__inpTitle">Enter TITLE event</label> -->
+						<input
+							class="newEventModal__inpTitle"
+							type="text"
+							data-value="titleEvent"
+							placeholder="Enter TITLE event"
+							id="newEventModal__inpTitle"
+						/>
+
+						<button class="btn newEventModal__btn" type="submit" disabled>
+							Add event
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="alarm-event-modal">
+			<div class="alarm-event-modal__dialog">
+				<div class="alarm-event-modal__content">
+					<div class="alarm-event-modal__close" data-close>&times;</div>
+					<div class="alarm-event-modal__title">ALARM !!!</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="changeColorModal">
+			<div class="changeColorModal__close" data-close>&times;</div>
+			<div>
+				<form action="#">
+					<label for="inp-color">Choose new color</label>
+					<input
+						type="color"
+						name="inp-color"
+						class="changeColorModal_inpColor"
+						id="inp-color"
+						value="#00FBFF"
+					/>
+				</form>
+			</div>
+		</div>
 
 		<script src="time.js"></script>
 		<script src="script.js"></script>
