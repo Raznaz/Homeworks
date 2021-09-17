@@ -188,3 +188,34 @@ startHoursNewEvent.addEventListener('input', controlEventHours);
 endHoursNewEvent.addEventListener('input', controlEventHours);
 startMinutesNewEvent.addEventListener('input', controlEventMinutes);
 endMinutesNewEvent.addEventListener('input', controlEventMinutes);
+
+// ******** События с календарем
+
+calendar.addEventListener('click', (e) => {
+	const target = e.target;
+	if (target && target.classList.contains('event')) {
+		openWindow(modalChange);
+		currentElement = e.target;
+		currentObj = time.find((obj) => +e.target.dataset.id === obj.id);
+
+		let endEventTime = currentObj.start + currentObj.duration;
+		startHoursChangeEvent.value = +Math.trunc(currentObj.start / 60) + 8;
+		startMinutesChangeEvent.value = +currentObj.start % 60;
+		endHoursChangeEvent.value = +Math.trunc(endEventTime / 60) + 8;
+		endMinutesChangeEvent.value = +endEventTime % 60;
+		titleChangeEvent.value = currentObj.title;
+	}
+
+	if (target && target.classList.contains('change-color')) {
+		openWindow(modalColor);
+		currentElement = e.target;
+	}
+	if (target && target.classList.contains('delete-event')) {
+		const index = time.findIndex(
+			(item) => +target.parentElement.parentElement.dataset.id === item.id,
+		);
+		time.splice(index, 1);
+		console.log(time);
+		render();
+	}
+});
