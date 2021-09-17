@@ -23,7 +23,6 @@ const endMinutesNewEvent = document.querySelector(
 	'.newEventModal__inpEnd-mins',
 );
 const titleNewEvent = document.querySelector('.newEventModal__inpTitle');
-// Change event
 const startHoursChangeEvent = document.querySelector(
 	'.changeEventModal__inpStart-hrs',
 );
@@ -38,6 +37,16 @@ const endMinutesChangeEvent = document.querySelector(
 	'.changeEventModal__inpEnd-mins',
 );
 const titleChangeEvent = document.querySelector('.changeEventModal__inpTitle');
+
+const createCopyObj = () => {
+	const time = eventTime.map((obj, i) => ({
+		...obj,
+		...{ id: i },
+	}));
+	return time;
+};
+
+createCopyObj();
 
 const getUniqId = () => {
 	time.forEach((obj, i, arr) => {
@@ -68,13 +77,11 @@ const controlEventMinutes = function () {
 };
 
 const closeWindow = (selector) => {
-	console.log('function Close Windows - work');
 	selector.classList.add('hidden');
 	selector.classList.remove('show');
 };
 
 const openWindow = (selector) => {
-	console.log('function Open Windows - work');
 	selector.classList.remove('hidden');
 	selector.classList.add('show');
 };
@@ -131,7 +138,7 @@ const render = () => {
 	}
 };
 
-// ******** Добавление нового события NOTE:
+// Add new event
 
 btn.addEventListener('click', () => {
 	openWindow(modalNewEvent);
@@ -216,7 +223,6 @@ calendar.addEventListener('click', (e) => {
 			(item) => +target.parentElement.parentElement.dataset.id === item.id,
 		);
 		time.splice(index, 1);
-		console.log(time);
 		render();
 	}
 });
@@ -295,7 +301,6 @@ endMinutesChangeEvent.addEventListener('input', controlEventMinutes);
 //  Alarm Message
 
 alarmModalMessage.addEventListener('click', (e) => {
-	console.log(e.target);
 	if (e.target.classList.contains('alarm-event-modal__close')) {
 		e.target.remove();
 		closeWindow(alarmModalMessage);
@@ -333,7 +338,6 @@ const setAlarmEvent = (myTime) => {
 				<h2>${title}</h2>
 				<h3>Начало: ${hours}:${minutes}</h3>
 				`;
-				console.log(`Start Event ${title} `);
 			}, diff);
 		}
 	});
@@ -364,7 +368,6 @@ function calculateTimeForCalendar(stHr, stMin, endHr, endMin) {
 }
 
 const clearAllSetTimeouts = () => {
-	console.log('run clearAllsetTimeouts');
 	let killId = setTimeout(function () {
 		for (let i = killId; i > 0; i--) clearInterval(i);
 	}, 0);
