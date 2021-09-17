@@ -1,3 +1,378 @@
 body {
+	/* background-color: #f8f8f8; */
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0;
+	padding: 0;
+}
+
+.tableRow {
+	position: relative;
+}
+.time {
+	position: absolute;
+	top: 0;
+	left: -60px;
+}
+
+.bigTime {
+	position: relative;
+	right: 100px;
+	/* display: inline-block; */
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 200px;
+}
+
+.btn {
+	width: 80%;
+	padding: 10px 20px;
+	margin: 10px 0;
+}
+.btn:hover {
+	cursor: pointer;
+}
+
+.calendar {
+	margin: 20px 0;
+	padding-bottom: 20px;
+}
+
+.calendar__buttonAdd {
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	border: none;
+	background-color: rgb(165, 241, 121);
+	box-shadow: 5px -2px 6px 0px #ccc;
+	border-radius: 10px;
+	transition: background-color 0.3s, box-shadow 0.3s;
+}
+.calendar__buttonAdd:hover {
+	background-color: #82fa3c;
+	box-shadow: 5px -2px 6px 2px #ccc;
+}
+
+.calendar__buttonAdd i {
+	font-size: 20px;
+}
+
+.calendar__buttonAdd span {
+	margin-top: 1px;
+	font-size: 14px;
+}
+
+.table {
+	width: 200px;
+	border-collapse: collapse;
+}
+
+.time {
+	/* position: relative; */
+}
+
+/* .time::after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 200px;
+	height: 1px;
+	top: 0;
+	left: 0;
+	background-color: #ccc;
+	z-index: -1;
+} */
+
+.bigFont {
+	font-size: 16px;
+	font-weight: 600;
+}
+.bigFont::after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 254px;
+	height: 1px;
+	top: -1px;
+	left: 0;
+	background-color: rgb(231, 231, 231);
+	z-index: -1;
+}
+
+.smallFont {
+	font-size: 12px;
+}
+
+.event {
+	position: relative;
+	max-width: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background-color: #e2ecf5;
+	border-left: 2px solid #6e9ecf;
+	cursor: cell;
+	transition: border-left-color 0.2s linear;
+}
+
+.event:hover {
+	border-left-color: #257fda;
+}
+
+.event:hover .props {
+	cursor: pointer;
+	display: block;
+	top: 0px;
+	right: 0px;
+}
+
+.props {
+	width: 40px;
+	position: absolute;
+	display: none;
+	background-color: transparent;
+}
+
+.delete-event:hover {
+	color: red;
+}
+
+.change-color:hover {
+	color: green;
+}
+
+/* Modals */
+
+/* Change event modal */
+
+.changeEventModal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.changeEventModal__dialog {
+	max-width: 300px;
+	margin: 5% 5%;
+}
+
+.changeEventModal__content {
+	text-align: center;
+	position: relative;
+	width: 100%;
+	overflow-y: auto;
+	padding: 20px 10px;
+	background-color: rgb(253, 255, 160);
+	border-radius: 20px;
+}
+
+.changeEventModal__close {
+	position: absolute;
+	top: 8px;
+	right: 14px;
+	font-size: 30px;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+}
+
+.changeEventModal__close:hover {
+	color: red;
+}
+
+.changeEventModal__inpStart,
+.changeEventModal__inpDuration,
+.changeEventModal__inpTitle {
+	display: block;
+	width: 80%;
+	margin: 10px auto;
+	padding: 10px 20px;
+}
+
+/* Change color modal */
+
+.changeColorModal {
+	position: fixed;
+	width: 200px;
+	padding: 30px 10px;
+	top: 10px;
+	left: 20%;
+	background-color: rgba(216, 191, 216, 0.7);
+	width: 180px;
+	height: 100px;
+	border-radius: 20px;
+	text-align: center;
+	display: none;
+}
+
+.changeColorModal label {
+	display: block;
+	margin-bottom: 10px;
+}
+.changeColorModal input {
+	margin: 0 auto;
+	width: 50px;
+	display: block;
+	margin-bottom: 15px;
+	border: none;
+	/* outline: none; */
+}
+.changeColorModal input:hover {
+	cursor: pointer;
+}
+
+.changeColorModal__close {
+	position: absolute;
+	top: 0px;
+	right: 14px;
+	font-size: 30px;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+}
+
+.changeColorModal__close:hover {
+	color: red;
+}
+
+/* New event modal */
+
+.newEventModal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.newEventModal__dialog {
+	max-width: 300px;
+	margin: 5% 5%;
+}
+
+.newEventModal__content {
+	position: relative;
+	width: 100%;
+	padding: 20px;
+	overflow-y: auto;
+	background-color: rgb(161, 250, 161);
+	border-radius: 20px;
+	text-align: center;
+}
+
+.newEventModal__close {
+	position: absolute;
+	top: 8px;
+	right: 14px;
+	font-size: 30px;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+	transition: color 0.2s linear;
+}
+
+.newEventModal__close:hover {
+	color: red;
+}
+
+.newEventModal__startContainer {
+	justify-content: center;
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.newEventModal__startContainer input {
+	/* width: 40px; */
+	padding: 5px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.newEventModal__inpTitle {
+	display: block;
+	width: 80%;
+	margin: 10px auto;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
+.newEventModal__btn {
+	box-shadow: 0 0 0px 0px #444;
+	transition: all 0.2s linear;
+}
+.newEventModal__btn:hover {
+	box-shadow: 0 0 10px 1px rgb(187, 187, 187);
+	background-color: rgba(221, 221, 221, 0.4);
+}
+
+/* Alarm Modal */
+
+.alarm-event-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1000;
+}
+
+.alarm-event-modal__dialog {
+	max-width: 500px;
+	margin: 50px;
+}
+
+.alarm-event-modal__content {
+	position: relative;
+	margin-bottom: 10px;
+	width: 100%;
+	overflow-y: auto;
+	padding: 25px 40px;
+	background-color: rgba(255, 17, 0, 0.5);
+	border-radius: 20px;
+}
+
+.alarm-event-modal__close {
+	position: absolute;
+	top: -10px;
+	right: 12px;
+	font-size: 30px;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+}
+
+.alarm-event-modal__close:hover {
+	color: red;
+}
+
+.show {
+	display: block;
+}
+
+.hidden {
+	display: none;
 }
