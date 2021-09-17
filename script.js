@@ -98,3 +98,61 @@ const render = () => {
 		}
 	}
 };
+
+// ******** Добавление нового события
+
+btn.addEventListener('click', () => {
+	openWindow(modalNewEvent);
+});
+
+modalNewEvent.addEventListener('click', (e) => {
+	e.preventDefault();
+	if (e.target.classList.contains('newEventModal__close')) {
+		closeWindow(modalNewEvent);
+	}
+
+	if (e.target.classList.contains('newEventModal__btn')) {
+		const timeResult = calculateTimeForCalendar(
+			+startHoursNewEvent.value,
+			+startMinutesNewEvent.value,
+			+endHoursNewEvent.value,
+			+endMinutesNewEvent.value,
+		);
+		if (!timeResult) {
+			return;
+		}
+		const { start, duration } = timeResult;
+		const newObjEvent = {
+			start,
+			duration,
+			title: titleNewEvent.value,
+		};
+		time.push(newObjEvent);
+		closeWindow(modalNewEvent);
+		getUniqId();
+		render();
+	}
+});
+
+modalNewEvent.addEventListener('input', function () {
+	if (
+		+startHoursNewEvent.value >= 8 &&
+		+startHoursNewEvent.value <= 17 &&
+		+endHoursNewEvent.value >= 8 &&
+		+endHoursNewEvent.value <= 17 &&
+		+startMinutesNewEvent.value >= 0 &&
+		+startMinutesNewEvent.value <= 60 &&
+		+endMinutesNewEvent.value >= 0 &&
+		+endMinutesNewEvent.value <= 60 &&
+		+titleNewEvent.value.length > 0
+	) {
+		document.querySelector('.newEventModal__btn').disabled = false;
+	} else {
+		document.querySelector('.newEventModal__btn').disabled = true;
+	}
+});
+
+startHoursNewEvent.addEventListener('input', controlEventHours);
+endHoursNewEvent.addEventListener('input', controlEventHours);
+startMinutesNewEvent.addEventListener('input', controlEventMinutes);
+endMinutesNewEvent.addEventListener('input', controlEventMinutes);
