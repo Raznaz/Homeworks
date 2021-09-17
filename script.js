@@ -236,3 +236,55 @@ modalColor.addEventListener('click', (e) => {
 		closeWindow(modalColor);
 	}
 });
+// ******* Изменять событие
+modalChange.addEventListener('input', function () {
+	if (
+		+startHoursChangeEvent.value >= 8 &&
+		+startHoursChangeEvent.value <= 17 &&
+		+endHoursChangeEvent.value >= 8 &&
+		+endHoursChangeEvent.value <= 17 &&
+		+startMinutesChangeEvent.value >= 0 &&
+		+startMinutesChangeEvent.value <= 60 &&
+		+endMinutesChangeEvent.value >= 0 &&
+		+endMinutesChangeEvent.value <= 60 &&
+		+titleChangeEvent.value.length > 0
+	) {
+		document.querySelector('.changeEventModal__btn').disabled = false;
+	} else {
+		document.querySelector('.changeEventModal__btn').disabled = true;
+	}
+});
+
+modalChange.addEventListener('click', (e) => {
+	e.preventDefault();
+	if (e.target.classList.contains('changeEventModal__close')) {
+		closeWindow(modalChange);
+	}
+
+	if (e.target.classList.contains('changeEventModal__btn')) {
+		const timeResult = calculateTimeForCalendar(
+			+startHoursChangeEvent.value,
+			+startMinutesChangeEvent.value,
+			+endHoursChangeEvent.value,
+			+endMinutesChangeEvent.value,
+		);
+		if (!timeResult) {
+			return;
+		}
+		const { start, duration } = timeResult;
+		const currentEvent = time.find(
+			(obj) => obj.id === +currentElement.dataset.id,
+		);
+		currentEvent.start = start;
+		currentEvent.duration = duration;
+		currentEvent.title = titleValue.value;
+
+		closeWindow(modalChange);
+		render();
+	}
+});
+
+startHoursChangeEvent.addEventListener('input', controlEventHours);
+endHoursChangeEvent.addEventListener('input', controlEventHours);
+startMinutesChangeEvent.addEventListener('input', controlEventMinutes);
+endMinutesChangeEvent.addEventListener('input', controlEventMinutes);
