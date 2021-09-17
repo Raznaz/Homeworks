@@ -182,6 +182,7 @@ modalNewEvent.addEventListener('input', () => {
 	} else {
 		document.querySelector('.newEventModal__btn').disabled = true;
 	}
+	document.querySelector('.newEventModal__btn').disabled = false;
 });
 
 startHoursNewEvent.addEventListener('input', controlEventHours);
@@ -189,7 +190,7 @@ endHoursNewEvent.addEventListener('input', controlEventHours);
 startMinutesNewEvent.addEventListener('input', controlEventMinutes);
 endMinutesNewEvent.addEventListener('input', controlEventMinutes);
 
-// ******** События с календарем
+// ******** События с календарем NOTE:
 
 calendar.addEventListener('click', (e) => {
 	const target = e.target;
@@ -219,6 +220,7 @@ calendar.addEventListener('click', (e) => {
 		render();
 	}
 });
+
 // ******** Изменение цвета
 
 colorInp.addEventListener('change', (e) => {
@@ -236,6 +238,7 @@ modalColor.addEventListener('click', (e) => {
 		closeWindow(modalColor);
 	}
 });
+
 // ******* Изменять событие
 modalChange.addEventListener('input', function () {
 	if (
@@ -292,7 +295,9 @@ endMinutesChangeEvent.addEventListener('input', controlEventMinutes);
 //  Alarm Message
 
 alarmModalMessage.addEventListener('click', (e) => {
+	console.log(e.target);
 	if (e.target.classList.contains('alarm-event-modal__close')) {
+		e.target.remove();
 		closeWindow(alarmModalMessage);
 	}
 });
@@ -323,9 +328,10 @@ const setAlarmEvent = (myTime) => {
 		if (diff >= 0) {
 			setTimeout(() => {
 				openWindow(alarmModalMessage);
-				document.querySelector('.alarm-event-modal__title').innerHTML = `
+				document.querySelector('.alarm-event-modal__content').innerHTML = `
+				<div class="alarm-event-modal__close" data-close>&times;</div>
 				<h2>${title}</h2>
-				<h3>Начало: ${hours}:${minutes}:00</h3>
+				<h3>Начало: ${hours}:${minutes}</h3>
 				`;
 				console.log(`Start Event ${title} `);
 			}, diff);
