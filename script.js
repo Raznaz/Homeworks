@@ -288,3 +288,80 @@ startHoursChangeEvent.addEventListener('input', controlEventHours);
 endHoursChangeEvent.addEventListener('input', controlEventHours);
 startMinutesChangeEvent.addEventListener('input', controlEventMinutes);
 endMinutesChangeEvent.addEventListener('input', controlEventMinutes);
+
+//  Alarm Message
+
+alarmModalMessage.addEventListener('click', (e) => {
+	if (e.target.classList.contains('alarm-event-modal__close')) {
+		closeWindow(alarmModalMessage);
+	}
+});
+
+const getCalibrationTime = (min) => {
+	let hours = Math.floor(min / 60) + 8;
+	let minutes = min % 60;
+	let seconds = 0;
+
+	return {
+		hours,
+		minutes,
+		seconds,
+	};
+};
+
+const setAlarmEvent = (myTime) => {
+	const dateNow = new Date();
+	clearAllSetTimeouts();
+
+	myTime.forEach(({ hours, minutes, seconds, title }) => {
+		const eventAlarm = new Date();
+		eventAlarm.setHours(hours);
+		eventAlarm.setMinutes(minutes);
+		eventAlarm.setSeconds(seconds);
+		let diff = eventAlarm - dateNow;
+
+		if (diff >= 0) {
+			setTimeout(() => {
+				openWindow(alarmModalMessage);
+				document.querySelector('.alarm-event-modal__title').innerHTML = `
+				<h2>${title}</h2>
+				<h3>Начало: ${hours}:${minutes}:00</h3>
+				`;
+				console.log(`Start Event ${title} `);
+			}, diff);
+		}
+	});
+};
+
+const getCorrectTime = () => {
+	const arrTime = time.map(({ start, title }) => {
+		return { ...getCalibrationTime(start), ...{ title } };
+	});
+	setAlarmEvent(arrTime);
+	return arrTime;
+};
+
+function calculateTimeForCalendar(stHr, stMin, endHr, endMin) {
+	let getMinStart = (stHr - 8) * 60 + stMin;
+	let getMinEnd = (endHr - 8) * 60 + endMin;
+	let durationTimeEvent = getMinEnd - getMinStart;
+
+	if (durationTimeEvent <= 0) {
+		alert('Не правильно ввели данные. Введите заново. Спасибо');
+		return;
+	} else {
+		return {
+			start: getMinStart,
+			duration: durationTimeEvent,
+		};
+	}
+}
+
+const clearAllSetTimeouts = () => {
+	console.log('run clearAllsetTimeouts');
+	let killId = setTimeout(function () {
+		for (let i = killId; i > 0; i--) clearInterval(i);
+	}, 0);
+};
+
+render();
