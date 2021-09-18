@@ -1,5 +1,4 @@
 body {
-	/* background-color: #f8f8f8; */
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
@@ -31,7 +30,6 @@ h5 {
 .bigTime {
 	position: relative;
 	right: 100px;
-	/* display: inline-block; */
 }
 
 .container {
@@ -40,7 +38,7 @@ h5 {
 }
 
 .btn {
-	width: 80%;
+	width: 100%;
 	padding: 10px 20px;
 	margin: 10px 0;
 }
@@ -81,22 +79,6 @@ h5 {
 	width: 200px;
 	border-collapse: collapse;
 }
-
-.time {
-	/* position: relative; */
-}
-
-/* .time::after {
-	content: '';
-	position: absolute;
-	display: block;
-	width: 200px;
-	height: 1px;
-	top: 0;
-	left: 0;
-	background-color: #ccc;
-	z-index: -1;
-} */
 
 .bigFont {
 	font-size: 16px;
@@ -236,7 +218,6 @@ h5 {
 	display: block;
 	margin-bottom: 15px;
 	border: none;
-	/* outline: none; */
 }
 .changeColorModal input:hover {
 	cursor: pointer;
@@ -307,7 +288,6 @@ h5 {
 }
 
 .newEventModal__startContainer input {
-	/* width: 40px; */
 	padding: 5px;
 	font-size: 16px;
 	font-weight: 700;
