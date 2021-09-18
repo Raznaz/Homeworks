@@ -1,4 +1,4 @@
-let eventTime = [
+const eventTime = [
 	{ start: 0, duration: 15, title: 'Exercise', bgColor: '#E2ECF5' },
 	{ start: 25, duration: 30, title: 'Travel to work', bgColor: '#E2ECF5' },
 	{ start: 30, duration: 30, title: 'Plan day', bgColor: '#E2ECF5' },
@@ -24,8 +24,3 @@ let eventTime = [
 	},
 	{ start: 415, duration: 30, title: 'Push up branch', bgColor: '#E2ECF5' },
 ];
-
-let time = eventTime.map((obj, i) => ({
-	...obj,
-	...{ id: i },
-}));

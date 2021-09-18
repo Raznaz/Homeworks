@@ -38,15 +38,10 @@ const endMinutesChangeEvent = document.querySelector(
 );
 const titleChangeEvent = document.querySelector('.changeEventModal__inpTitle');
 
-const createCopyObj = () => {
-	const time = eventTime.map((obj, i) => ({
-		...obj,
-		...{ id: i },
-	}));
-	return time;
-};
-
-createCopyObj();
+const time = eventTime.map((obj, i) => ({
+	...obj,
+	...{ id: i },
+}));
 
 const getUniqId = () => {
 	time.forEach((obj, i, arr) => {
@@ -120,7 +115,7 @@ const render = () => {
 	const newTdArr = [...document.querySelectorAll('td')];
 
 	for (let i = 0; i < time.length; i++) {
-		for (k = 0; k < newTdArr.length; k++) {
+		for (let k = 0; k < newTdArr.length; k++) {
 			if (time[i].start === k) {
 				newTdArr[k].dataset.id = time[i].id;
 				newTdArr[k].style.backgroundColor = time[i].bgColor;
@@ -146,11 +141,11 @@ btn.addEventListener('click', () => {
 
 modalNewEvent.addEventListener('click', (e) => {
 	e.preventDefault();
-	if (e.target.classList.contains('newEventModal__close')) {
+	if (e.target && e.target.classList.contains('newEventModal__close')) {
 		closeWindow(modalNewEvent);
 	}
 
-	if (e.target.classList.contains('newEventModal__btn')) {
+	if (e.target && e.target.classList.contains('newEventModal__btn')) {
 		const timeResult = calculateTimeForCalendar(
 			+startHoursNewEvent.value,
 			+startMinutesNewEvent.value,
@@ -189,7 +184,6 @@ modalNewEvent.addEventListener('input', () => {
 	} else {
 		document.querySelector('.newEventModal__btn').disabled = true;
 	}
-	document.querySelector('.newEventModal__btn').disabled = false;
 });
 
 startHoursNewEvent.addEventListener('input', controlEventHours);
@@ -197,14 +191,14 @@ endHoursNewEvent.addEventListener('input', controlEventHours);
 startMinutesNewEvent.addEventListener('input', controlEventMinutes);
 endMinutesNewEvent.addEventListener('input', controlEventMinutes);
 
-// ******** События с календарем NOTE:
+// ******** События с календарем
 
 calendar.addEventListener('click', (e) => {
-	const target = e.target;
-	if (target && target.classList.contains('event')) {
+	// const target = e.target;
+	if (e.target && e.target.classList.contains('event')) {
 		openWindow(modalChange);
 		currentElement = e.target;
-		currentObj = time.find((obj) => +e.target.dataset.id === obj.id);
+		const currentObj = time.find((obj) => +e.target.dataset.id === obj.id);
 
 		let endEventTime = currentObj.start + currentObj.duration;
 		startHoursChangeEvent.value = +Math.trunc(currentObj.start / 60) + 8;
@@ -214,13 +208,13 @@ calendar.addEventListener('click', (e) => {
 		titleChangeEvent.value = currentObj.title;
 	}
 
-	if (target && target.classList.contains('change-color')) {
+	if (e.target && e.target.classList.contains('change-color')) {
 		openWindow(modalColor);
 		currentElement = e.target;
 	}
-	if (target && target.classList.contains('delete-event')) {
+	if (e.target && e.target.classList.contains('delete-event')) {
 		const index = time.findIndex(
-			(item) => +target.parentElement.parentElement.dataset.id === item.id,
+			(item) => +e.target.parentElement.parentElement.dataset.id === item.id,
 		);
 		time.splice(index, 1);
 		render();
@@ -232,7 +226,7 @@ calendar.addEventListener('click', (e) => {
 colorInp.addEventListener('change', (e) => {
 	currentElement.parentElement.parentElement.style.backgroundColor =
 		e.target.value;
-	currentObj = time.find(
+	const currentObj = time.find(
 		(obj) => obj.id === +currentElement.parentElement.parentElement.dataset.id,
 	);
 	currentObj.bgColor = e.target.value;
@@ -240,7 +234,7 @@ colorInp.addEventListener('change', (e) => {
 });
 
 modalColor.addEventListener('click', (e) => {
-	if (e.target.classList.contains('changeColorModal__close')) {
+	if (e.target && e.target.classList.contains('changeColorModal__close')) {
 		closeWindow(modalColor);
 	}
 });
@@ -266,11 +260,11 @@ modalChange.addEventListener('input', function () {
 
 modalChange.addEventListener('click', (e) => {
 	e.preventDefault();
-	if (e.target.classList.contains('changeEventModal__close')) {
+	if (e.target && e.target.classList.contains('changeEventModal__close')) {
 		closeWindow(modalChange);
 	}
 
-	if (e.target.classList.contains('changeEventModal__btn')) {
+	if (e.target && e.target.classList.contains('changeEventModal__btn')) {
 		const timeResult = calculateTimeForCalendar(
 			+startHoursChangeEvent.value,
 			+startMinutesChangeEvent.value,
@@ -301,7 +295,7 @@ endMinutesChangeEvent.addEventListener('input', controlEventMinutes);
 //  Alarm Message
 
 alarmModalMessage.addEventListener('click', (e) => {
-	if (e.target.classList.contains('alarm-event-modal__close')) {
+	if (e.target && e.target.classList.contains('alarm-event-modal__close')) {
 		e.target.remove();
 		closeWindow(alarmModalMessage);
 	}
@@ -357,7 +351,7 @@ function calculateTimeForCalendar(stHr, stMin, endHr, endMin) {
 	let durationTimeEvent = getMinEnd - getMinStart;
 
 	if (durationTimeEvent <= 0) {
-		alert('Не правильно ввели данные. Введите заново. Спасибо');
+		alert('Incorrect put data.Repeat please');
 		return;
 	} else {
 		return {
@@ -369,7 +363,9 @@ function calculateTimeForCalendar(stHr, stMin, endHr, endMin) {
 
 const clearAllSetTimeouts = () => {
 	let killId = setTimeout(function () {
-		for (let i = killId; i > 0; i--) clearInterval(i);
+		for (let i = killId; i > 0; i--) {
+			clearInterval(i);
+		}
 	}, 0);
 };
 
