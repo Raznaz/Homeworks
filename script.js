@@ -11,31 +11,17 @@ const modalNewEvent = document.querySelector('.newEventModal');
 const alarmModalMessage = document.querySelector('.alarm-event-modal');
 let currentElement = null;
 
-const startHoursNewEvent = document.querySelector(
-	'.newEventModal__inpStart-hrs',
-);
-const startMinutesNewEvent = document.querySelector(
-	'.newEventModal__inpStart-mins',
-);
+const startHoursNewEvent = document.querySelector('.newEventModal__inpStart-hrs');
+const startMinutesNewEvent = document.querySelector('.newEventModal__inpStart-mins');
 
 const endHoursNewEvent = document.querySelector('.newEventModal__inpEnd-hrs');
-const endMinutesNewEvent = document.querySelector(
-	'.newEventModal__inpEnd-mins',
-);
+const endMinutesNewEvent = document.querySelector('.newEventModal__inpEnd-mins');
 const titleNewEvent = document.querySelector('.newEventModal__inpTitle');
-const startHoursChangeEvent = document.querySelector(
-	'.changeEventModal__inpStart-hrs',
-);
-const startMinutesChangeEvent = document.querySelector(
-	'.changeEventModal__inpStart-mins',
-);
+const startHoursChangeEvent = document.querySelector('.changeEventModal__inpStart-hrs');
+const startMinutesChangeEvent = document.querySelector('.changeEventModal__inpStart-mins');
 
-const endHoursChangeEvent = document.querySelector(
-	'.changeEventModal__inpEnd-hrs',
-);
-const endMinutesChangeEvent = document.querySelector(
-	'.changeEventModal__inpEnd-mins',
-);
+const endHoursChangeEvent = document.querySelector('.changeEventModal__inpEnd-hrs');
+const endMinutesChangeEvent = document.querySelector('.changeEventModal__inpEnd-mins');
 const titleChangeEvent = document.querySelector('.changeEventModal__inpTitle');
 
 const time = eventTime.map((obj, i) => ({
@@ -191,10 +177,9 @@ endHoursNewEvent.addEventListener('input', controlEventHours);
 startMinutesNewEvent.addEventListener('input', controlEventMinutes);
 endMinutesNewEvent.addEventListener('input', controlEventMinutes);
 
-// ******** События с календарем
+// Calendars event
 
 calendar.addEventListener('click', (e) => {
-	// const target = e.target;
 	if (e.target && e.target.classList.contains('event')) {
 		openWindow(modalChange);
 		currentElement = e.target;
@@ -221,11 +206,10 @@ calendar.addEventListener('click', (e) => {
 	}
 });
 
-// ******** Изменение цвета
+// Change color
 
 colorInp.addEventListener('change', (e) => {
-	currentElement.parentElement.parentElement.style.backgroundColor =
-		e.target.value;
+	currentElement.parentElement.parentElement.style.backgroundColor = e.target.value;
 	const currentObj = time.find(
 		(obj) => obj.id === +currentElement.parentElement.parentElement.dataset.id,
 	);
@@ -239,7 +223,8 @@ modalColor.addEventListener('click', (e) => {
 	}
 });
 
-// ******* Изменять событие
+// Change event
+
 modalChange.addEventListener('input', function () {
 	if (
 		+startHoursChangeEvent.value >= 8 &&
@@ -275,9 +260,7 @@ modalChange.addEventListener('click', (e) => {
 			return;
 		}
 		const { start, duration } = timeResult;
-		const currentEvent = time.find(
-			(obj) => obj.id === +currentElement.dataset.id,
-		);
+		const currentEvent = time.find((obj) => obj.id === +currentElement.dataset.id);
 		currentEvent.start = start;
 		currentEvent.duration = duration;
 		currentEvent.title = titleValue.value;
